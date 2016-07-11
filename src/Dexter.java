@@ -11,10 +11,12 @@ import java.util.StringTokenizer;
 public class Dexter {
     public static void main(String[] args) throws java.io.IOException {
         //String fn = "D:\\!Java\\Stepic\\Dexter\\in_graph.txt";
-        String fn = "/Users/Alex/Desktop/Java/Stepic1/in_graphOriginal.txt";
+        //String fn = "/Users/Alex/Desktop/Java/Stepic1/in_graphOriginal.txt";
+        String fn = "/Users/Alex/Desktop/Java/Stepic1/in_graph2.txt";
+
         //int ribNumber = getLineCount(fn);
 
-        Graph graph = new Graph(fn);
+        Graph graph = new Graph();
         graph.InitVertexList();
         if(graph.Calc() == 0)
           System.out.println(graph.vertexDexter.get(graph.lastVertex));
@@ -42,7 +44,7 @@ class Graph {
 
     public Graph() {
         int lineCount = 10;
-        graphMap = new int[lineCount - 2][3];
+        //graphMap = new int[lineCount - 2][3];
         Scanner sc = new Scanner(System.in);
         int count = 0;
         while (sc.hasNextLine() && count < lineCount) {
@@ -51,6 +53,7 @@ class Graph {
             if (count == 0) {
                 vertexCount = Integer.parseInt(st.nextToken());
                 ribCount = Integer.parseInt(st.nextToken());
+                graphMap = new int[ribCount][3];
             } else if (count >= lineCount - 1) {
                 firstVertex = Integer.parseInt(st.nextToken());
                 lastVertex = Integer.parseInt(st.nextToken());
@@ -109,17 +112,19 @@ class Graph {
         int minTemp=1000,
             startFrom = this.firstVertex,
             vertexFrom = 0,
-            vertexFromWight = 0;
+            vertexFromWight = 0,
+                count=0;
 
         this.vertexList.remove(startFrom);
         while(!this.vertexList.isEmpty()) {
 
+            count++;
             int VertNum = 0;
 
             for(int k : this.vertexDexter.keySet()) {
                 if(this.vertexList.containsKey(k) || this.vertexList.isEmpty())
                     continue;
-                VertNum = k;
+                VertNum = -1;
                 // Went through full rib list and find min value
                 for (int i = 0; i < this.ribCount; i++)
                     //if (this.graphMap[i][0] == VertNum)
@@ -130,6 +135,8 @@ class Graph {
                             VertNum = this.graphMap[i][0];
                         }
                 // find such rib which has lowest value
+                if(VertNum == -1) return VertNum;
+
                 for (int i = 0; i < this.ribCount; i++)
                     if (this.graphMap[i][0] == VertNum)
                         // found min iterator
@@ -139,6 +146,7 @@ class Graph {
                             vertexFromWight = this.vertexDexter.get(vertexFrom);
                             this.vertexDexter.replace(this.graphMap[i][1], minTemp + vertexFromWight);
                             this.vertexList.remove(this.graphMap[i][1]);
+
                             minTemp = 1000;
                             vertexFromWight = 0;
                             this.graphMap[i][2]=1000;
@@ -160,6 +168,7 @@ class Graph {
     public boolean checkIfHasStart()
     {
         boolean result=false;
+        //System.out.println(this.graphMap.);
         for(int i=0;i<this.ribCount;i++)
             if(this.graphMap[i][0] == this.firstVertex)
                 result = true;

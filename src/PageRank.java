@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
  */
 public class PageRank {
     public static void main(String[] args) throws FileNotFoundException {
-        String fn = "/Users/Alex/Desktop/Java/Stepic1/in_pageRank.txt";
+    /*    String fn = "/Users/Alex/Desktop/Java/Stepic1/in_pageRank.txt";
         HashMap<Integer, VertexRelation> fullList;
 
         fullList = InitHash();
@@ -72,9 +72,9 @@ public class PageRank {
         }
         sc.close();
         return fullList;
-    }
+  */  }
 }
-
+/*
 class VertexRelation{
     double InRank =0.0;
     HashMap<Integer, Integer> outVertexes = new HashMap<>();
@@ -96,3 +96,4 @@ class VertexRelation{
         return out;
     }
 }
+*/
