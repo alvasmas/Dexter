@@ -12,7 +12,7 @@ public class Dexter {
     public static void main(String[] args) throws java.io.IOException {
         //String fn = "D:\\!Java\\Stepic\\Dexter\\in_graph.txt";
         //String fn = "/Users/Alex/Desktop/Java/Stepic1/in_graphOriginal.txt";
-        String fn = "/Users/Alex/Desktop/Java/Stepic1/in_graph2.txt";
+        String fn = "/Users/Alex/Desktop/Java/Stepic1/in_graph3.txt";
 
         //int ribNumber = getLineCount(fn);
 
@@ -129,7 +129,7 @@ class Graph {
                 for (int i = 0; i < this.ribCount; i++)
                     //if (this.graphMap[i][0] == VertNum)
                     //check though all vertex which in main hashmap
-                      if (!this.vertexList.containsKey(this.graphMap[i][0]))
+                      if (!this.vertexList.containsKey(this.graphMap[i][0]) && this.graphMap[i][0] !=0)
                         if (minTemp > this.graphMap[i][2]) {
                             minTemp = this.graphMap[i][2];
                             VertNum = this.graphMap[i][0];
@@ -150,6 +150,13 @@ class Graph {
                             minTemp = 1000;
                             vertexFromWight = 0;
                             this.graphMap[i][2]=1000;
+                            // Remove add vertex from scope of candidates
+                            for (int j = 0; j < this.ribCount; j++)
+                              if(this.graphMap[j][1] == VertNum) {
+                                  this.graphMap[j][0] = 0;
+                                  this.graphMap[j][1] = 0;
+                                  this.graphMap[j][2] = 0;
+                              }
                         }
             }
         }
