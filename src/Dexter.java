@@ -10,11 +10,9 @@ import java.util.StringTokenizer;
  */
 public class Dexter {
     public static void main(String[] args) throws java.io.IOException {
-        //String fn = "D:\\!Java\\Stepic\\Dexter\\in_graph.txt";
+        String fn = "D:\\!Java\\Stepic\\Dexter\\in_graph3.txt";
         //String fn = "/Users/Alex/Desktop/Java/Stepic1/in_graphOriginal.txt";
-        String fn = "/Users/Alex/Desktop/Java/Stepic1/in_graph3.txt";
-
-        //int ribNumber = getLineCount(fn);
+        //String fn = "/Users/Alex/Desktop/Java/Stepic1/in_graph3.txt";
 
         Graph graph = new Graph();
         graph.InitVertexList();
@@ -33,7 +31,6 @@ public class Dexter {
         sc.close();
         return count;
     }
-
 }
 
 class Graph {
@@ -43,7 +40,7 @@ class Graph {
                               vertexDexter = new HashMap<>();
 
     public Graph() {
-        int lineCount = 10;
+        int lineCount = 20;
         //graphMap = new int[lineCount - 2][3];
         Scanner sc = new Scanner(System.in);
         int count = 0;
@@ -54,10 +51,10 @@ class Graph {
                 vertexCount = Integer.parseInt(st.nextToken());
                 ribCount = Integer.parseInt(st.nextToken());
                 graphMap = new int[ribCount][3];
-            } else if (count >= lineCount - 1) {
+            } else if (st.countTokens() == 2) {
                 firstVertex = Integer.parseInt(st.nextToken());
                 lastVertex = Integer.parseInt(st.nextToken());
-            } else {
+            } else if(st.countTokens() != 0) {
                 graphMap[count - 1][0] = Integer.parseInt(st.nextToken());
                 graphMap[count - 1][1] = Integer.parseInt(st.nextToken());
                 graphMap[count - 1][2] = Integer.parseInt(st.nextToken());
@@ -93,10 +90,10 @@ class Graph {
             if (count == 0) {
                 vertexCount = Integer.parseInt(st.nextToken());
                 ribCount = Integer.parseInt(st.nextToken());
-            } else if (count >= lineCount - 1) {
+            } else if (st.countTokens() == 2) {
                 firstVertex = Integer.parseInt(st.nextToken());
                 lastVertex = Integer.parseInt(st.nextToken());
-            } else {
+            } else if(st.countTokens() != 0) {
                 graphMap[count - 1][0] = Integer.parseInt(st.nextToken());
                 graphMap[count - 1][1] = Integer.parseInt(st.nextToken());
                 graphMap[count - 1][2] = Integer.parseInt(st.nextToken());
